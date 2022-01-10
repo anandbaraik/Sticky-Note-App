@@ -1,0 +1,55 @@
+body {
+  margin: 0;
+  scroll-behavior: smooth;
+  background: #009578;
+}
+#app {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 200px);
+  padding: 24px;
+  gap: 24px;
+}
+.note {
+  height: 200px;
+  box-sizing: border-box;
+  padding: 10px;
+  border-radius: 10px;
+  resize: none;
+  box-shadow: 0 0 7px rgba(0, 0, 0, 0.15);
+  outline-color: #f0ffff;
+  font-size: 15px;
+  font-family: sans-serif;
+}
+.add-note {
+  height: 200px;
+  border-radius: 10px;
+  outline: none;
+  border: none;
+  font-size: 120px;
+  background: rgba(0, 0, 0, 0.1);
+  color: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.add-note:hover {
+  background: rgba(0, 0, 0, 0.2);
+}
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.2);
+}
