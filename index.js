@@ -1,18 +1,19 @@
 const notesContainer = document.getElementById("app");
 const addNoteBtn = document.querySelector(".add-note");
 
+addNoteBtn.addEventListener('click', () => addNote());
+
 getNotes().forEach((note) => {
     const noteElement = createNoteElement(note.id, note.content);
     notesContainer.insertBefore(noteElement, addNoteBtn);
 });
 
-addNoteBtn.addEventListener('click', () => addNote());
 function getNotes() {
     return JSON.parse(localStorage.getItem('sticky-notes') || "[]");
 }
 
 function saveNotes(notes) {
-    
+    localStorage.setItem('sticky-notes', JSON.stringify(notes));
 }
 
 function createNoteElement(id, content) {
@@ -26,9 +27,9 @@ function createNoteElement(id, content) {
     });
 
     noteElement.addEventListener("dblclick", () => {
-        const doDelete = confirm("Are you sure? this sticky note won't be reverted once deleted!");
+        const doDelete = confirm("Are you sure? this sticky note won't be recovered once deleted!");
         if(doDelete) {
-            deleteNote(id);
+            deleteNote(id, noteElement);
         }
     });
     
@@ -36,14 +37,26 @@ function createNoteElement(id, content) {
 }
 
 function addNote() {
-    console.log('add note');
+    const newNote = {
+        id: Math.floor(Math.random() * 1000000000),
+        content: ""
+    };
+    const notes = getNotes();
+    notes.push(newNote);
+    saveNotes(notes);
+    let noteElement = createNoteElement(newNote.id, newNote.content);
+    notesContainer.insertBefore(noteElement, addNoteBtn);
 }
 
 function updateNote(id, newContent) {
-    console.log(id);
-    console.log(newContent);
+    const notes = getNotes();
+    const targetNote = notes.filter((note) => note.id == id)[0];
+    targetNote.content = newContent;
+    saveNotes(notes);
 }
 
-function deleteNote(id) {
-    console.log(id);
+function deleteNote(id, noteElement) {
+    const notes = getNotes().filter((note) => note.id != id);
+    saveNotes(notes);
+    notesContainer.removeChild(noteElement);
 }
