@@ -61,3 +61,32 @@ body {
     gap: 20px;
   }
 }
+.author {
+  right: 0;
+  bottom: 0;
+  position: fixed;
+  z-index: 100;
+  border-top-left-radius: 5px;
+  padding: 6px;
+  border-top: 1px solid #efefef;
+  border-left: 1px solid #efefef;
+  background: #fff2ff;
+  color: rgb(18, 89, 241);
+  text-decoration: none;
+  margin-top: 3px;
+}
+.author img {
+  max-width: 100%;
+  border-radius: 100%;
+  width: 22px;
+  vertical-align: middle;
+  object-fit: contain;
+}
+.author p {
+  margin: 0;
+  vertical-align: middle;
+  display: inline;
+  margin-left: 7px;
+  font-weight: 500;
+  font-size: 14px;
+}
